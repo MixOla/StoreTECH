@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'drf_spectacular',
+    'enterprises',
 ]
 
 MIDDLEWARE = [
@@ -101,8 +102,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Todolist API',
-    'DESCRIPTION': 'Awesome todolist project',
+    'TITLE': 'StoreTechniques API',
+    'DESCRIPTION': 'Awesome on-line store of techniques project',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     'POSTPROCESSING_HOOKS': []

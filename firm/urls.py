@@ -1,11 +1,9 @@
-from django.urls import path, include
-from rest_framework.routers import SimpleRouter
+from django.urls import path
+from firm import views
 
-from firm.views import FirmViewSet
-
-company_router = SimpleRouter()
-company_router.register('company', FirmViewSet, basename='firm')
 
 urlpatterns = [
-    path('', include(company_router.urls)),
+    path('firm/create', views.FirmCreateView.as_view(), name='firm_create'),
+    path('firm/list', views.FirmListView.as_view(), name='firm_list'),
+    path('firm/<pk>', views.FirmView.as_view(), name='firm_pk'),
 ]

@@ -11,4 +11,5 @@ class FirmSerializer(serializers.ModelSerializer):
         model = Firm
         fields = '__all__'
 
+
         

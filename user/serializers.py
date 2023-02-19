@@ -58,13 +58,6 @@ class LoginSerializer(serializers.ModelSerializer):
         return user
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = USER_MODEL
-        fields = ['id', 'username', 'first_name', 'last_name', 'email']
-
-
 class UpdatePasswordSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     old_password = serializers.CharField(write_only=True, required=True)

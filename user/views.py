@@ -1,24 +1,20 @@
 from django.contrib.auth import (
     get_user_model,
-    login,
-    logout
+    login
 )
 from drf_spectacular.utils import extend_schema
 from rest_framework import (
     permissions,
-    status
 )
 from rest_framework.generics import (
     CreateAPIView,
     GenericAPIView,
-    RetrieveUpdateDestroyAPIView,
     UpdateAPIView
 )
 from rest_framework.response import Response
 
 from user.serializers import (
     LoginSerializer,
-    ProfileSerializer,
     RegistrationSerializer,
     UpdatePasswordSerializer
 )
@@ -47,28 +43,6 @@ class LoginView(GenericAPIView):
         user = serializer.save()
         login(request=request, user=user)
         return Response(serializer.data)
-
-
-class ProfileView(RetrieveUpdateDestroyAPIView):
-    """ Профиль пользователя. """
-    serializer_class = ProfileSerializer
-    queryset = USER_MODEL.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
-
-    @extend_schema(
-        description="Retrieve user info",
-        summary="User info"
-    )
-    def get_object(self):
-        return self.request.user
-
-    @extend_schema(
-        description="Destroy user",
-        summary="Destroy user"
-    )
-    def delete(self, request, *args, **kwargs):
-        logout(request)
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class UpdatePasswordView(UpdateAPIView):

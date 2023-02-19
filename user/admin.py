@@ -7,6 +7,9 @@ from user.models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
+    """
+    Админ-панель модели User
+    """
     list_display = ('username', 'email', 'first_name', 'last_name')
     search_fields = ('username', 'email', 'first_name', 'last_name')
     readonly_fields = ('last_login', 'date_joined')
@@ -31,3 +34,4 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.unregister(Group)
+
